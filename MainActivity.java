@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Simulate receiving scanned data
-        scannedData = "SampleBarcodeData123"; // Replace this with data from the actual barcode scanner
+        scannedData = "SampleBarcodeData123"; // Would be the actual data from the barcode scanner.
         inputScannedData();
     }
 
@@ -57,6 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void processInput() {
         // Add your input processing logic here
-        // e.g. store the data, perform a search, etc.
+        // e.g. searching the database for the scanned item (cost, weight, etc.)
     }
 }
