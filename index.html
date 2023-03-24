@@ -8,6 +8,7 @@
 <body>
   <textarea id="item-box" rows="10" cols="30"></textarea>
   <button onclick="pasteOneCharAtATime()">Paste Clipboard</button>
+  <input type="button" id="input-button" value="Process Input" onclick="processInput()" disabled>
 
   <script>
     function sleep(ms) {
@@ -18,14 +19,25 @@
       try {
         const clipboardText = await navigator.clipboard.readText();
         const itemBox = document.getElementById("item-box");
+        const inputButton = document.getElementById("input-button");
+
+        inputButton.disabled = true;
         
         for (const char of clipboardText) {
           itemBox.value += char;
           await sleep(50); // Adjust the delay between characters as needed
         }
+
+        inputButton.disabled = false;
+        inputButton.click();
       } catch (error) {
         console.error('Failed to read clipboard contents: ', error);
       }
+    }
+
+    function processInput() {
+      // Add your input processing logic here
+      console.log("Input processed");
     }
   </script>
 </body>
