@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Character at a Time Input</title>
+</head>
+<body>
+  <textarea id="item-box" rows="10" cols="30"></textarea>
+  <button onclick="pasteOneCharAtATime()">Paste Clipboard</button>
+
+  <script>
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function pasteOneCharAtATime() {
+      try {
+        const clipboardText = await navigator.clipboard.readText();
+        const itemBox = document.getElementById("item-box");
+        
+        for (const char of clipboardText) {
+          itemBox.value += char;
+          await sleep(50); // Adjust the delay between characters as needed
+        }
+      } catch (error) {
+        console.error('Failed to read clipboard contents: ', error);
+      }
+    }
+  </script>
+</body>
+</html>
